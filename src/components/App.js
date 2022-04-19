@@ -1,20 +1,29 @@
+import {useState} from "react";
 import video from "../data/video.js";
+import Infos from "./Infos.js";
+import Media from "./Media.js";
+import Comments from "./Comments.js";
 
 function App() {
+  const[text, setText] = useState(true)
+  const[comment, setComment] = useState(true)
+    
+    function handleClick(){
+        setText(!text)
+        setComment(!comment)
+        
+    }
   console.log("Here's your data:", video);
 
-  return (
-    <div className="App">
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
-        allowFullScreen
-        title="Thinking in React"
-      />
-    </div>
-  );
+  return <>
+  <Media data ={video} />
+  <Infos data ={video} handleClick = {handleClick} text = {text}/>
+  {comment?<Comments data ={video}/> : ""}
+  
+  
+  </>
+    
+  ;
 }
 
 export default App;
